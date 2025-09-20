@@ -11,6 +11,9 @@
 
 #include "convexhull.h"
 #include <algorithm>
+#include "stack.h"
+
+
 
 /***************************************************
  * IF YOU WISH TO DEFINE YOUR OWN CUSTOM FUNCTIONS, *
@@ -28,7 +31,7 @@ bool straight(pair<double, double> piv, pair<double, double> p1, pair<double, do
 
 bool between(pair<double, double> piv, pair<double, double> p1, pair<double, double> p2)
 {
-    return min(piv.first, p1, first) <= p2.first && p2.first <= max(piv.first, p2.first) &&
+    return min(piv.first, p1.first) <= p2.first && p2.first <= max(piv.first, p2.first) &&
            min(piv.second, p1.second) <= p2.second &&
            p2.second <= max(piv.second, p1.second);
 }
@@ -125,7 +128,7 @@ bool CCW(pair<double, double> p1, pair<double, double> p2, pair<double, double> 
 vector<pair<double, double>> GetConvexHull(vector<pair<double, double>> &v)
 {
     vector<pair<double, double>> hull;
-    stack<pair<double, double>> stack;
+    Stack<pair<double, double>> stack;
 
     if (v.size() < 3)
     {
